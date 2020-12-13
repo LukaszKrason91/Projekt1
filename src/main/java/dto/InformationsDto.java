@@ -12,6 +12,7 @@ public class InformationsDto {
     private String stores;
     private String purchase_places;
 
+
     public long getCode() {
         return code;
     }
@@ -62,6 +63,10 @@ public class InformationsDto {
 
     public String getPurchase_places() {
         return purchase_places;
+    }
+
+    public void setPurchase_places(String purchase_places) {
+        this.purchase_places = purchase_places;
     }
 
     @Override

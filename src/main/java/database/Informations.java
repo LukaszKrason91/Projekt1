@@ -1,21 +1,25 @@
 package database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Informations {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ADD_CODE")
     private long code;
+    @Column(name = "ADD_BRANDS")
     private String brands;
+    @Column(name = "ADD_PRODUCT_NAME")
     private String product_name;
+    @Column(name = "ADD_CATEGORIES")
     private String categories;
+    @Column(name = "ADD_COUNTRIES")
     private String countries;
+    @Column(name = "ADD_STORE")
     private String stores;
+    @Column(name = "ADD_PURCHASE_PLACES")
     private String purchase_places;
 
     public long getCode() {
@@ -66,22 +70,10 @@ public class Informations {
         this.stores = stores;
     }
 
-    public String getPurchase_places() {
-        return purchase_places;
+    public String getPurchase_places(String purchase_places) {
+        return this.purchase_places;
     }
 
-    @Override
-    public String toString() {
-        return "Informations{" +
-                "code=" + code +
-                ", brands='" + brands + '\'' +
-                ", product_name='" + product_name + '\'' +
-                ", categories='" + categories + '\'' +
-                ", countries='" + countries + '\'' +
-                ", stores='" + stores + '\'' +
-                ", purchase_places='" + purchase_places + '\'' +
-                '}';
-    }
 
 
 }

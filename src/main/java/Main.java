@@ -1,3 +1,5 @@
+import dto.InformationsDto;
+
 import java.util.Scanner;
 
 public class Main {
@@ -9,9 +11,9 @@ public class Main {
         try{
             System.out.println("Podaj kod kreskowy");
             Scanner scanner = new Scanner(System.in);
-            String result;
             long barCode = scanner.nextLong();
-            result = openFoodFactsService.food(barCode);
+            InformationsDto result = openFoodFactsService.food(barCode);
+            System.out.println(result);
 
 
         } catch (CustomException e) {

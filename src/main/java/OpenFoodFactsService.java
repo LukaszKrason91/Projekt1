@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import database.Informations;
+import dto.InformationsDto;
 import mapper.InformationsMapper;
 
 import java.io.BufferedReader;
@@ -13,17 +14,17 @@ import java.util.Scanner;
 public class OpenFoodFactsService {
 
 
-    public String food(long barCode) throws CustomException {
+    public InformationsDto food(long barCode) throws CustomException {
 
         String uri = "https://word.openfoodfacts.org/api/v0/product/" + barCode + ".json";
         String json = get(uri);
         Gson gson = new Gson();
-        Informations informations = gson.fromJson(json, Informations.class);
+        InformationsDto informationsDto = gson.fromJson(json, InformationsDto.class);
 
-        Informations entity = InformationsMapper.mapInformationsDtoToInformations(informations);
+        Informations entity = InformationsMapper.mapInformationsDtoToInformations(informationsDto);
         // TODO: save to database
 
-        return entity;
+        return informationsDto;
     }
 
     private String get(String uri) throws CustomException {
