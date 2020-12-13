@@ -10,9 +10,10 @@ public class Main {
             System.out.println("Podaj kod kreskowy");
             Scanner scanner = new Scanner(System.in);
             String result;
-            long qrCode = scanner.nextLong();
-            result = openFoodFactsService.food(qrCode);
-            System.out.println(result);
+            long barCode = scanner.nextLong();
+            result = openFoodFactsService.food(barCode);
+
+
         } catch (CustomException e) {
             e.printStackTrace();
         }

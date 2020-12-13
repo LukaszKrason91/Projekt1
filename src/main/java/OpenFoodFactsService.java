@@ -1,3 +1,7 @@
+import com.google.gson.Gson;
+import database.Informations;
+import mapper.InformationsMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,10 +13,20 @@ import java.util.Scanner;
 public class OpenFoodFactsService {
 
 
-    public String food(long qrCode) throws CustomException {
+    public String food(long barCode) throws CustomException {
 
-        String uri = "https://word.openfoodfacts.org/api/v0/product/" + qrCode;
+        String uri = "https://word.openfoodfacts.org/api/v0/product/" + barCode + ".json";
+        String json = get(uri);
+        Gson gson = new Gson();
+        Informations informations = gson.fromJson(json, Informations.class);
 
+        Informations entity = InformationsMapper.mapInformationsDtoToInformations(informations);
+        // TODO: save to database
+
+        return entity;
+    }
+
+    private String get(String uri) throws CustomException {
         try {
             URL url = new URL(uri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
