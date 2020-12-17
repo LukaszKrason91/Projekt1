@@ -12,6 +12,16 @@ public class InformationsDto {
     private String stores;
     private String purchase_places;
 
+    public InformationsDto(long code, String product_name, String brands, String categories, String countries, String stores, String purchase_places) {
+        this.code = code;
+        this.product_name =product_name;
+        this.brands = brands;
+        this.categories = categories;
+        this.countries = countries;
+        this.stores = stores;
+        this.purchase_places = purchase_places;
+    }
+
 
     public long getCode() {
         return code;

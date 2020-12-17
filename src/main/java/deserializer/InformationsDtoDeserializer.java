@@ -18,8 +18,9 @@ public class InformationsDtoDeserializer implements JsonDeserializer<Information
         String countries = object.get("countries").getAsString();
         String stores = object.get("stores").getAsString();
         String purchase_places = object.get("purchase_places").getAsString();
+        long code = object.get("code").getAsLong();
 
-
-        return null;
+        return new InformationsDto(code,product_name,brands,categories,countries,stores,purchase_places);
     }
+
 }
