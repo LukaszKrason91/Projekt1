@@ -1,5 +1,6 @@
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import database.Informations;
+import deserializer.InformationsDtoDeserializer;
 import dto.InformationsDto;
 import mapper.InformationsMapper;
 
@@ -9,7 +10,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
 
 public class OpenFoodFactsService {
 
@@ -18,8 +18,9 @@ public class OpenFoodFactsService {
 
         String uri = "https://word.openfoodfacts.org/api/v0/product/" + barCode + ".json";
         String json = get(uri);
-        Gson gson = new Gson();
-        InformationsDto informationsDto = gson.fromJson(json, InformationsDto.class);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(InformationsDto.class, new InformationsDtoDeserializer());
+        InformationsDto informationsDto = gsonBuilder.create().fromJson(json, InformationsDto.class);
 
         Informations entity = InformationsMapper.mapInformationsDtoToInformations(informationsDto);
         // TODO: save to database
